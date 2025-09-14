@@ -4,3 +4,4 @@ langchain-groq
 langchain-core
 langchain-community
 chromadb
+pysqlite3-binary

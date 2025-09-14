@@ -1,3 +1,14 @@
+import sys
+import os
+from dotenv import load_dotenv
+
+# Force Python to use pysqlite3 instead of default sqlite3
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 import streamlit as st
 from langchain_groq import ChatGroq
 from langchain.prompts import PromptTemplate
@@ -5,13 +16,11 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.vectorstores import Chroma
 from datetime import datetime
-import os
-from dotenv import load_dotenv
+
 load_dotenv()
-import os
 
 # 🔑 Your API Key
-groq_api_key = os.getenv("groq_api_key")
+groq_api_key = os.getenv("GROQ_API_KEY")
 
 
 # -------------------------
